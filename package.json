@@ -1,0 +1,11 @@
+{
+  "name": "cm3d2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:amenoyoya/cm3d2.git",
+  "author": "amenoyoya <mtyswe3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "long": "^4.0.0"
+  }
+}
