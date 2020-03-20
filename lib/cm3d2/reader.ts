@@ -369,9 +369,9 @@ export class CM3D2Reader {
   }
 
   /**
-   * @private Read maid sexial class data
+   * @private Read maid sexual class data
    */
-  private readSexialClassData() {
+  private readSexualClassData() {
     const ret = [];
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret.push({
@@ -480,7 +480,7 @@ export class CM3D2Reader {
 			contractType: this.reader.readInt32(),
 			maidClassData: this.readMaidClassData(), // 全メイドタイプ
 			currentMaidClass: this.reader.readInt32(), // 現在のメイドタイプ
-			sexialClassData: this.readSexialClassData(), // 全夜伽タイプ
+			sexualClassData: this.readSexualClassData(), // 全夜伽タイプ
 			currentYotogiClass: this.reader.readInt32(), // 現在の夜伽タイプ
 			features: this.readFeatures(),
 			propensities: this.readPropensities(),
