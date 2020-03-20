@@ -1,7 +1,10 @@
 /**
- * BinaryReader
+ * Binary IO library
  */
 
+/**
+ * BinaryReader
+ */
 export class BinaryReader {
   // private member
   private buf: Buffer;
@@ -99,4 +102,124 @@ export class BinaryReader {
   isEof() {
     return this.ptr >= this.buf.length;
   }
-};
+}
+
+/**
+ * BinaryWriter
+ */
+export class BinaryWriter {
+  // private member
+  private buf: Buffer;
+  private ptr: number;
+
+  /**
+   * @param {number} capacity 
+   */
+  constructor(capacity: number = 256) {
+    this.buf = new Buffer(capacity);
+    this.ptr = 0;
+  }
+  
+  /**
+   * Expand buffer capacity
+   * @param {number} ext
+   */
+  expandCapacity(ext: number) {
+    this.buf = Buffer.concat([this.buf, new Buffer(ext)]);
+  };
+  
+  writeInt8(val: number) {
+    this.expandCapacity(1);
+    this.buf.writeInt8(val, this.ptr++);
+  }
+
+  writeUInt8(val: number) {
+    this.expandCapacity(1);
+    this.buf.writeUInt8(val, this.ptr++);
+  }
+
+  writeInt16(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(2);
+    littleEndian? this.buf.writeInt16LE(val, this.ptr): this.buf.writeInt16BE(val, this.ptr);
+    this.ptr += 2;
+  }
+
+  writeUInt16(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(2);
+    littleEndian? this.buf.writeUInt16LE(val, this.ptr): this.buf.writeUInt16BE(val, this.ptr);
+    this.ptr += 2;
+  }
+
+  writeInt32(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(4);
+    littleEndian? this.buf.writeInt32LE(val, this.ptr): this.buf.writeInt32BE(val, this.ptr);
+    this.ptr += 4;
+  }
+
+  writeUInt32(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(4);
+    littleEndian? this.buf.writeUInt32LE(val, this.ptr): this.buf.writeUInt32BE(val, this.ptr);
+    this.ptr += 4;
+  }
+
+  writeInt64(val: Int32Array, littleEndian: boolean = true) {
+    if (littleEndian) {
+      this.writeInt32(val[0]);
+      this.writeInt32(val[1]);
+    } else {
+      this.writeInt32(val[1]);
+      this.writeInt32(val[0]);
+    }
+  }
+
+  writeUInt64(val: Uint32Array, littleEndian: boolean = true) {
+    if (littleEndian) {
+      this.writeUInt32(val[0]);
+      this.writeUInt32(val[1]);
+    } else {
+      this.writeUInt32(val[1]);
+      this.writeUInt32(val[0]);
+    }
+  }
+
+  writeFloat(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(4);
+    littleEndian? this.buf.writeFloatLE(val, this.ptr): this.buf.writeFloatBE(val, this.ptr);
+    this.ptr += 4;
+  }
+
+  writeDouble(val: number, littleEndian: boolean = true) {
+    this.expandCapacity(8);
+    littleEndian? this.buf.writeDoubleLE(val, this.ptr): this.buf.writeDoubleBE(val, this.ptr);
+    this.ptr += 8;
+  }
+  
+  writeBoolean(val: boolean) {
+    this.writeUInt8(val ? 1 : 0);
+  }
+
+  writeBuffer(buffer: Buffer) {
+    this.expandCapacity(buffer.length);
+    buffer.copy(this.buf, this.ptr);
+    this.ptr += buffer.length;
+  }
+  
+  write7BitEncodedInt(val: number) {
+    val >>>= 0;
+    while (val >= 0x80) {
+      this.writeUInt8((val & 0x7F) | 0x80);
+      val >>>= 7;
+    }
+    this.writeUInt8(val);
+  }
+  
+  writeString(val: string) {
+    const buffer = Buffer.from(val);
+    this.write7BitEncodedInt(buffer.length);
+    this.writeBuffer(buffer);
+  }
+  
+  buffer() {
+    return Buffer.from(this.buf);
+  }
+}
