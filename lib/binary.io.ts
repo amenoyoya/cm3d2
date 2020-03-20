@@ -116,7 +116,7 @@ export class BinaryWriter {
    * @param {number} capacity 
    */
   constructor(capacity: number = 256) {
-    this.buf = new Buffer(capacity);
+    this.buf = Buffer.alloc(capacity);
     this.ptr = 0;
   }
   
@@ -125,7 +125,7 @@ export class BinaryWriter {
    * @param {number} ext
    */
   expandCapacity(ext: number) {
-    this.buf = Buffer.concat([this.buf, new Buffer(ext)]);
+    this.buf = Buffer.concat([this.buf, Buffer.alloc(ext)]);
   };
   
   writeInt8(val: number) {
