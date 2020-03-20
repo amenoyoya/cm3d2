@@ -1,9 +1,9 @@
 /**
- * Custom Maid 3D2
+ * Custom Maid 3D2 save data importer
  */
-import {BinaryReader} from './binary.io';
+import {BinaryReader} from '../binary.io';
 
-export class CM3D2 {
+export class CM3D2Reader {
   // private member
   private reader: BinaryReader;
 
