@@ -10,7 +10,7 @@ export class CM3D2 {
   /**
    * @param {Buffer} buffer 
    */
-  constructor(buffer) {
+  constructor(buffer: Buffer) {
     this.reader = new BinaryReader(buffer);
   }
 
@@ -109,9 +109,9 @@ export class CM3D2 {
 
   /**
    * @private Check the version is correct
-   * @param {int} version
+   * @param {number} version
    */
-  checkVersion(version) {
+  private checkVersion(version: number) {
     if (version > 153 || version < 101) {
 			throw new Error('Version ' + (version / 100) + ' is not supported');
 		}
@@ -120,7 +120,7 @@ export class CM3D2 {
   /**
    * @private Read player parameters
    */
-  readPlayerParam() {
+  private readPlayerParam() {
     if (this.reader.readString() !== 'CM3D2_PPARAM') {
 			throw new Error('Expected CM3D2_PPARAM');
 		}
@@ -224,7 +224,7 @@ export class CM3D2 {
   /**
    * @private Read maid property 
    */
-  readMaidProp() {
+  private readMaidProp() {
 		if (this.reader.readString() !== 'CM3D2_MPROP') {
 			throw new Error('Expected CM3D2_MPROP');
 		}
@@ -248,7 +248,7 @@ export class CM3D2 {
   /**
    * @private Read maid properties
    */
-  readMaidProps() {
+  private readMaidProps() {
 		if (this.reader.readString() !== 'CM3D2_MPROP_LIST') {
 			throw new Error('Expected CM3D2_MPROP_LIST');
 		}
@@ -264,7 +264,7 @@ export class CM3D2 {
   /**
    * @private Read binary data as base64
    */
-  readBase64() {
+  private readBase64() {
     const length = this.reader.readInt32();
 		return this.reader.readBuffer(length).toString('base64');
   }
@@ -272,7 +272,7 @@ export class CM3D2 {
   /**
    * @private Read position info
    */
-  readXYZ() {
+  private readXYZ() {
 		return {
 			x: this.reader.readFloat(),
 			y: this.reader.readFloat(),
@@ -283,7 +283,7 @@ export class CM3D2 {
   /**
    * @private Read color info
    */
-  readRGBA() {
+  private readRGBA() {
     return {
 			r: this.reader.readFloat(),
 			g: this.reader.readFloat(),
@@ -295,7 +295,7 @@ export class CM3D2 {
   /**
    * @private Read maid misc
    */
-  readMaidMisc() {
+  private readMaidMisc() {
 		if (this.reader.readString() !== 'CM3D2_MAID_MISC') {
 			throw new Error('Expected CM3D2_MAID_MISC');
 		}
@@ -311,7 +311,7 @@ export class CM3D2 {
   /**
    * @private Read maid parts color
    */
-  readPartsColor() {
+  private readPartsColor() {
 		return {
 			use: this.reader.readBoolean(),
 			mainHue: this.reader.readInt32(),
@@ -329,7 +329,7 @@ export class CM3D2 {
   /**
    * @private Read maid parts 
    */
-  readMaidParts() {
+  private readMaidParts() {
 		if (this.reader.readString() !== 'CM3D2_MULTI_COL') {
 			throw new Error('Expected CM3D2_MULTI_COL');
 		}
@@ -345,7 +345,7 @@ export class CM3D2 {
   /**
    * @private Read maid EXP data
    */
-  readExpData() {
+  private readExpData() {
     return {
 			currentExp: this.reader.readInt32(),
 			totalExp: this.reader.readInt32(),
@@ -357,7 +357,7 @@ export class CM3D2 {
   /**
    * @private Read maid class data
    */
-  readMaidClassData() {
+  private readMaidClassData() {
     const ret = [];
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret.push({
@@ -371,7 +371,7 @@ export class CM3D2 {
   /**
    * @private Read maid sexial class data
    */
-  readSexialClassData() {
+  private readSexialClassData() {
     const ret = [];
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret.push({
@@ -385,7 +385,7 @@ export class CM3D2 {
   /**
    * @private Read maid features
    */
-  readFeatures() {
+  private readFeatures() {
     const ret = [];
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret.push(this.reader.readInt32()); // Feature
@@ -396,7 +396,7 @@ export class CM3D2 {
   /**
    * @private Read maid propensities
    */
-  readPropensities() {
+  private readPropensities() {
     const ret = [];
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret.push(this.reader.readInt32()); // Propensity
@@ -407,7 +407,7 @@ export class CM3D2 {
   /**
    * @private Read maid skill data
    */
-  readSkillData() {
+  private readSkillData() {
     const ret = {};
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret[this.reader.readInt32()] = {
@@ -422,7 +422,7 @@ export class CM3D2 {
   /**
    * @private Read maid work data
    */
-  readWorkData() {
+  private readWorkData() {
     const ret = {};
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret[this.reader.readInt32()] = {
@@ -437,7 +437,7 @@ export class CM3D2 {
   /**
    * @private Read maid generic flag
    */
-  readGenericFlag() {
+  private readGenericFlag() {
     const ret = {};
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret[this.reader.readString()] = this.reader.readInt32();
@@ -448,7 +448,7 @@ export class CM3D2 {
   /**
    * @private Read maid parts dictionary
    */
-  readPartsDict() {
+  private readPartsDict() {
     const ret = {};
     for (let i = this.reader.readInt32(); i > 0; --i) {
       ret[this.reader.readString()] = this.reader.readString();
@@ -459,7 +459,7 @@ export class CM3D2 {
   /**
    * @private Read maid parameters
    */
-  readMaidParam() {
+  private readMaidParam() {
     if (this.reader.readString() !== 'CM3D2_MAID_PPARAM') {
 			throw new Error('Expected CM3D2_MAID_PPARAM');
 		}
