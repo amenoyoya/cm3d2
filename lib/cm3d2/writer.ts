@@ -225,7 +225,7 @@ export class CM3D2Writer {
 		this.writer.writeInt32(data.lovely);
 		this.writer.writeInt32(data.lust);
 		this.writer.writeInt32(data.elegance);
-		this.writer.writeInt32(data.mValue);
+		this.writer.writeInt32(data.masochism);
 		this.writer.writeInt32(data.charm);
 		this.writer.writeInt32(data.pervert);
 		this.writer.writeInt32(data.service);
@@ -293,7 +293,7 @@ export class CM3D2Writer {
 		this.writer.writeInt32(data.maidClassBonusStatus.lovely);
 		this.writer.writeInt32(data.maidClassBonusStatus.lust);
 		this.writer.writeInt32(data.maidClassBonusStatus.elegance);
-		this.writer.writeInt32(data.maidClassBonusStatus.mValue);
+		this.writer.writeInt32(data.maidClassBonusStatus.masochism);
 		this.writer.writeInt32(data.maidClassBonusStatus.charm);
 		this.writer.writeInt32(data.maidClassBonusStatus.pervert);
 		this.writer.writeInt32(data.maidClassBonusStatus.service);
