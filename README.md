@@ -60,3 +60,69 @@ $ yarn tsc
 
 ## => [tsconfig.json].outDir: ./dist/ にコンパイルされる
 ```
+
+***
+
+## Build standalone app
+
+### Install nexe
+```bash
+$ yarn add nexe
+```
+
+### build.js
+```javascript
+const nexe = require('nexe');
+
+/**
+ * compile cm3d2_save2json.exe
+ */
+nexe.compile({
+  input: './dist/cm3d2_save2json.js',
+  output: './bin/cm3d2_save2json.exe',
+  nodeVersion: '12.14.1',
+  resources: []
+}, err => {
+  console.log(err);
+});
+
+/**
+ * compile cm3d2_json2save.exe
+ */
+nexe.compile({
+  input: './dist/cm3d2_json2save.js',
+  output: './bin/cm3d2_json2save.exe',
+  nodeVersion: '12.14.1',
+  resources: []
+}, err => {
+  console.log(err);
+});
+```
+
+### Compile
+```bash
+# execute build.js
+$ node build.exe
+
+## => ./bin/ に cm3d2_save2json.exe, cm3d2_json2save.exe が作成される
+```
+
+***
+
+## Usage
+
+- **cm3d2_save2json**
+    - カスタムメイド3D2 のセーブデータを JSON 形式に変換するプログラム
+- **cm3d2_json2save**
+    - JSON ファイルを カスタムメイド3D2 のセーブデータに戻すプログラム
+
+```powershell
+# SaveData001.save を JSON に変換
+> .\bin\cm3d2_save2json.exe C:\KISS\CM3D2\SaveData\SaveData001.save
+
+## => C:\KISS\CM3D2\SaveData\SaveData001.json が生成される
+## この JSON ファイルを編集してパラメータやメイド名等を変更する
+
+# SaveData001.json を SaveData001.save に戻す
+> .\bin\cm3d2_json2save.exe C:\KISS\CM3D2\SaveData\SaveData001.json
+```
