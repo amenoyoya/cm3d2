@@ -7,7 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^13.9.2",
-    "long": "^4.0.0",
     "ts-node": "^8.7.0",
     "typescript": "^3.8.3"
   }
