@@ -10514,7 +10514,7 @@
               }
             }
           ],
-          "currentYotogiClass": 1,
+          "currentSexualClass": 1,
           "features": [
             16
           ],
@@ -10544,7 +10544,7 @@
           "reception": 8061,
           "care": 5776,
           "lovely": 4854,
-          "inyoku": 8359,
+          "lust": 8359,
           "elegance": 4474,
           "mValue": 3861,
           "charm": 6309,
@@ -13996,7 +13996,7 @@
               }
             }
           ],
-          "currentYotogiClass": 6,
+          "currentSexualClass": 6,
           "features": [],
           "propensities": [
             6,
@@ -14025,7 +14025,7 @@
           "reception": 7933,
           "care": 7262,
           "lovely": 1941,
-          "inyoku": 6842,
+          "lust": 6842,
           "elegance": 853,
           "mValue": 4908,
           "charm": 2349,
@@ -17522,7 +17522,7 @@
               }
             }
           ],
-          "currentYotogiClass": 1,
+          "currentSexualClass": 1,
           "features": [
             7,
             9,
@@ -17552,7 +17552,7 @@
           "reception": 3663,
           "care": 4574,
           "lovely": 3612,
-          "inyoku": 3044,
+          "lust": 3044,
           "elegance": 2460,
           "mValue": 693,
           "charm": 1593,
@@ -20678,7 +20678,7 @@
               }
             }
           ],
-          "currentYotogiClass": 0,
+          "currentSexualClass": 0,
           "features": [
             7,
             13,
@@ -20711,7 +20711,7 @@
           "reception": 4906,
           "care": 2691,
           "lovely": 4639,
-          "inyoku": 2941,
+          "lust": 2941,
           "elegance": 4142,
           "mValue": 496,
           "charm": 3877,
@@ -23818,7 +23818,7 @@
               }
             }
           ],
-          "currentYotogiClass": 14,
+          "currentSexualClass": 14,
           "features": [],
           "propensities": [],
           "body": {
@@ -23844,7 +23844,7 @@
           "reception": 50,
           "care": 130,
           "lovely": 2500,
-          "inyoku": 2400,
+          "lust": 2400,
           "elegance": 850,
           "mValue": 2300,
           "charm": 1350,

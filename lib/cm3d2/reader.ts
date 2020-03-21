@@ -481,7 +481,7 @@ export class CM3D2Reader {
 			maidClassData: this.readMaidClassData(), // 全メイドタイプ
 			currentMaidClass: this.reader.readInt32(), // 現在のメイドタイプ
 			sexualClassData: this.readSexualClassData(), // 全夜伽タイプ
-			currentYotogiClass: this.reader.readInt32(), // 現在の夜伽タイプ
+			currentSexualClass: this.reader.readInt32(), // 現在の夜伽タイプ
 			features: this.readFeatures(),
 			propensities: this.readPropensities(),
 			body: {
