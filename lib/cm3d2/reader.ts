@@ -507,7 +507,7 @@ export class CM3D2Reader {
 			reception: this.reader.readInt32(),
 			care: this.reader.readInt32(),
 			lovely: this.reader.readInt32(),
-			inyoku: this.reader.readInt32(),
+			lust: this.reader.readInt32(),
 			elegance: this.reader.readInt32(),
 			mValue: this.reader.readInt32(),
 			charm: this.reader.readInt32(),
